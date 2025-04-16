@@ -4,6 +4,7 @@ from bs4 import BeautifulSoup
 from supabase import create_client, Client
 import os
 from dotenv import load_dotenv
+from fastapi.middleware.cors import CORSMiddleware
 
 # Load environment variables
 load_dotenv()
@@ -15,6 +16,15 @@ supabase: Client = create_client(
 )
 
 app = FastAPI()
+
+# Configure CORS for local development only
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["http://localhost:3000"],  # Next.js development server
+    allow_credentials=True,
+    allow_methods=["POST"],  # Only allow POST requests
+    allow_headers=["*"],
+)
 
 @app.post('/verify')
 def verify(email: str, name: str):
