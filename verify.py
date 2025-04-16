@@ -23,7 +23,7 @@ def verify(email: str, name: str):
 
     #check database
     try:
-        result = supabase.table('new').select('website').eq('domain', domain).execute()
+        result = supabase.table('school_data').select('website').eq('domain', domain).execute()
         if not result.data:
             raise HTTPException(status_code=404, detail='School not found')
         
