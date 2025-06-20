@@ -1,4 +1,4 @@
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI, HTTPException, Form
 import requests
 from bs4 import BeautifulSoup
 from supabase import create_client, Client
@@ -27,7 +27,8 @@ app.add_middleware(
 )
 
 @app.post('/verify')
-def verify(email: str, name: str):
+
+def verify(email: str = Form(...), name: str = Form(...)):
     #get domain
     domain = email.split('@')[-1]
     #check database
