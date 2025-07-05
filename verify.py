@@ -20,7 +20,7 @@ app = FastAPI()
 # Configure CORS for production
 origins = [
     "http://localhost:3000",  # Development
-    "https://your-app-name.vercel.app",  # Replace with your actual Vercel domain
+    "collegiatenetwork-gztade4aj-luciusscalas-projects.vercel.app",  # Replace with your actual Vercel domain
 ]
 
 app.add_middleware(
