@@ -32,7 +32,7 @@ app.add_middleware(
 )
 
 @app.post('/verify')
-def verify(email: str, name: str):
+def verify(email: str, name: str, sport: str):
     #get domain
     domain = email.split('@')[-1]
 
@@ -45,7 +45,10 @@ def verify(email: str, name: str):
         website = result.data[0]['website']
         #TODO more fullproof method of getting webiste (not all are .com)
         #TODO add other sports not just mens soccer
-        roster = website + '/sports/mens-soccer/roster'
+        if (sport == 'mens soccer'):
+            roster = website + '/sports/mens-soccer/roster'
+        else:
+            roster = website + '/sports/womens-soccer/roster'
 
         #get the roster
         #TODO fix check for wrong page loaded
